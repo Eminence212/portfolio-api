@@ -9,7 +9,7 @@ use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\SkillController;
-
+use App\Http\Controllers\TechnologieController;
 
 // ---------------------Identities----------------------------
 Route::get('identities',[IdentitieController::class,'index']);
@@ -64,3 +64,11 @@ Route::get('project/{id}',[ProjectController::class,'show']);
 Route::post('project',[ProjectController::class,'store']);
 Route::put('project/{id}',[ProjectController::class,'update']);
 Route::delete('project/{id}',[ProjectController::class,'destroy']);
+
+// ---------------------Technologies----------------------------
+
+Route::get('technologies',[TechnologieController::class,'index']);
+Route::get('technologie/{id}',[TechnologieController::class,'show']);
+Route::post('technologie',[TechnologieController::class,'store']);
+Route::put('technologie/{id}',[TechnologieController::class,'update']);
+Route::delete('technologie/{id}',[TechnologieController::class,'destroy']);
