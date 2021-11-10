@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IdentitieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// ---------------------Identities----------------------------
+Route::get('identities',[IdentitieController::class,'index']);
+Route::get('identitie/{id}',[IdentitieController::class,'show']);
+Route::post('identitie',[IdentitieController::class,'store']);
+Route::put('identitie/{id}',[IdentitieController::class,'update']);
+Route::delete('identitie/{id}',[IdentitieController::class,'destroy']);

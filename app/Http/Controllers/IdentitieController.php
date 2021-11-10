@@ -32,6 +32,7 @@ class IdentitieController extends Controller
         $identitie = new Identitie();
         $identitie->firstName = $request->input('firstName');
         $identitie->lastName = $request->input('lastName');
+        $identitie->email = $request->input('email');
         $identitie->phoneNumber = $request->input('phoneNumber');
         $identitie->adresse = $request->input('adresse');
         $identitie->twitter = $request->input('twitter');

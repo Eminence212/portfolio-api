@@ -10,6 +10,7 @@ class Identitie extends Model
      protected $fillable = [
         'firstName',
         'lastName',
+        'email',
         'phoneNumber',
         'adresse',
         'twitter',
