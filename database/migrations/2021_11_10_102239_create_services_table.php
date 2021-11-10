@@ -17,7 +17,6 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('title')->uniqid();
             $table->string('description')->uniqid();
-            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }
