@@ -60,7 +60,7 @@ Route::delete('domain/{id}',[DomainController::class,'destroy']);
 // ---------------------Projects----------------------------
 
 Route::get('projects',[ProjectController::class,'index']);
-Route::get('domain/{id}',[ProjectController::class,'show']);
-Route::post('domain',[ProjectController::class,'store']);
-Route::put('domain/{id}',[ProjectController::class,'update']);
-Route::delete('domain/{id}',[ProjectController::class,'destroy']);
+Route::get('project/{id}',[ProjectController::class,'show']);
+Route::post('project',[ProjectController::class,'store']);
+Route::put('project/{id}',[ProjectController::class,'update']);
+Route::delete('project/{id}',[ProjectController::class,'destroy']);
