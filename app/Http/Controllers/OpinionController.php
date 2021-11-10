@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Service;
 use Illuminate\Http\Request;
-use App\Http\Resources\ServiceResource;
+use App\Opinion;
+use App\Http\Resources\OpinionResource;
 
-class ServiceController extends Controller
+class OpinionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
-        $identities = Service::all();
-        return new ServiceResource($identities);
+          $opinions = Opinion::all();
+        return new OpinionResource($opinions);
     }
 
     /**
@@ -28,12 +27,12 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $service = new Service();
-        $service->title = $request->input('title');
-        $service->description = $request->input('description');
-        $service->save();
-        return new ServiceResource($service);
+        $opinion = new Opinion();
+        $opinion->name = $request->input('name');
+        $opinion->email= $request->input('email');
+        $opinion->message= $request->input('message');
+        $opinion->save();
+        return new OpinionResource($opinion);
     }
 
     /**
@@ -44,9 +43,8 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
-        $service = Service::findOrFail($id);
-        return new ServiceResource($service);
+        $opinion = Opinion::findOrFail($id);
+        return new OpinionResource($opinion);
     }
 
     /**
@@ -58,12 +56,12 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $service = Service::findOrFail($id);
-        $service->title = $request->input('title');
-        $service->description = $request->input('description');
-        $service->save();
-        return new ServiceResource($service);
+        $opinion =  Opinion::findOrFail($id);
+        $opinion->name = $request->input('name');
+        $opinion->email= $request->input('email');
+        $opinion->message= $request->input('message');
+        $opinion->save();
+        return new OpinionResource($opinion);
     }
 
     /**
@@ -74,9 +72,9 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-         $service = Service::findOrFail($id);
-        if($service->delete()){
-            return new ServiceResource($service);
+        $opinion = Opinion::findOrFail($id);
+        if($opinion->delete()){
+            return new OpinionResource($opinion);
         }
     }
 }
