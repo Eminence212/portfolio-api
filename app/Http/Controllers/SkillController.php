@@ -15,7 +15,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-       $skills = Skill::all();
+       $skills = Skill::with('type')->get();
         return new SkillResource($skills);
     }
 
@@ -33,7 +33,7 @@ class SkillController extends Controller
         $skill->level = $request->input('level');
         $skill->type_id = $request->input('type_id');
         $skill->save();
-        return new SkillResource($skill);
+        return new SkillResource($skill->load('type'));
     }
 
     /**
@@ -46,7 +46,7 @@ class SkillController extends Controller
     {
        //
         $skill = Skill::findOrFail($id);
-        return new SkillResource($skill);
+        return new SkillResource($skill->load('type'));
     }
 
     /**
@@ -63,7 +63,7 @@ class SkillController extends Controller
         $skill->level = $request->input('level');
         $skill->type_id = $request->input('type_id');
         $skill->save();
-        return new SkillResource($skill);
+        return new SkillResource($skill->load('type'));
     }
 
     /**
@@ -76,7 +76,7 @@ class SkillController extends Controller
     {
         $skill = Skill::findOrFail($id);
         if($skill->delete()){
-        return new SkillResource($skill);
+        return new SkillResource($skill->load('type'));
         }       
         
     }

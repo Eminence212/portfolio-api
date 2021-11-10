@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\IdentitieController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\SkillController;
 
 
 // ---------------------Identities----------------------------
@@ -37,3 +38,11 @@ Route::get('type/{id}',[TypeController::class,'show']);
 Route::post('type',[TypeController::class,'store']);
 Route::put('type/{id}',[TypeController::class,'update']);
 Route::delete('type/{id}',[TypeController::class,'destroy']);
+
+// ---------------------Skills----------------------------
+
+Route::get('skills',[SkillController::class,'index']);
+Route::get('skill/{id}',[SkillController::class,'show']);
+Route::post('skill',[SkillController::class,'store']);
+Route::put('skill/{id}',[SkillController::class,'update']);
+Route::delete('skill/{id}',[SkillController::class,'destroy']);

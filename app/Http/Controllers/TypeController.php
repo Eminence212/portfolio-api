@@ -18,7 +18,7 @@ class TypeController extends Controller
     {
         //
           //
-        $types = Type::all();
+        $types = Type::with('skills')->get();
         return new TypeResource($types);
     }
 
@@ -34,7 +34,7 @@ class TypeController extends Controller
         $type = new Type();
         $type->libelle = $request->input('libelle');
         $type->save();
-        return new TypeResource($type);
+        return new TypeResource($type->load('skills'));
     }
 
     /**
@@ -47,7 +47,8 @@ class TypeController extends Controller
     {
           //
         $type = Type::findOrFail($id);
-        return new TypeResource($type);
+        return new TypeResource($type->load('skills'));
+        
     }
 
     /**
@@ -62,7 +63,7 @@ class TypeController extends Controller
         $type =Type::findOrFail($id);
         $type->libelle = $request->input('libelle');
         $type->save();
-        return new TypeResource($type);
+        return new TypeResource($type->load('skills'));
     }
 
     /**
@@ -76,7 +77,7 @@ class TypeController extends Controller
       
     $type = Type::findOrFail($id);
     if($type->delete()){
-      return new TypeResource($type);
+      return new TypeResource($type->load('skills'));
     }       
     }
 }
