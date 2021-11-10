@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DomainController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
@@ -46,3 +47,11 @@ Route::get('skill/{id}',[SkillController::class,'show']);
 Route::post('skill',[SkillController::class,'store']);
 Route::put('skill/{id}',[SkillController::class,'update']);
 Route::delete('skill/{id}',[SkillController::class,'destroy']);
+
+// ---------------------Domains----------------------------
+
+Route::get('domains',[DomainController::class,'index']);
+Route::get('domain/{id}',[DomainController::class,'show']);
+Route::post('domain',[DomainController::class,'store']);
+Route::put('domain/{id}',[DomainController::class,'update']);
+Route::delete('domain/{id}',[DomainController::class,'destroy']);
