@@ -13,7 +13,7 @@ class CreateOpignionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('opignions', function (Blueprint $table) {
+        Schema::create('opinions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email');
@@ -29,6 +29,6 @@ class CreateOpignionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opignions');
+        Schema::dropIfExists('opinions');
     }
 }
