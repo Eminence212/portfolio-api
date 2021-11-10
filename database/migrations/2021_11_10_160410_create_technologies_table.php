@@ -13,7 +13,7 @@ class CreateTechnologiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tachnologies', function (Blueprint $table) {
+        Schema::create('technologies', function (Blueprint $table) {
             $table->id();
              $table->string('name')->unique();
             $table->timestamps();
