@@ -19,12 +19,12 @@ class CreateIdentitiesTable extends Migration
             $table->string('lastName')->unique();
             $table->string('email')->unique();
             $table->string('phoneNumber')->unique();
-            $table->text('adresse');
-            $table->string('twitter');
-            $table->string('linkedin');
-            $table->string('facebook');
-            $table->string('instagram');
-            $table->string('skype');
+            $table->text('adresse')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('skype')->nullable();
             $table->timestamps();
         });
     }

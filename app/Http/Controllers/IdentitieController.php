@@ -18,6 +18,8 @@ class IdentitieController extends Controller
     public function index()
     {
         //
+         $identities = Identitie::all();
+        return new IdentitieResource($identities);
     }
 
     /**
@@ -52,7 +54,8 @@ class IdentitieController extends Controller
      */
     public function show($id)
     {
-        //
+        $identitie = Identitie::findOrFail($id);
+        return new IdentitieResource($identitie);
     }
 
     /**
@@ -65,6 +68,19 @@ class IdentitieController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $identitie = Identitie::findOrFail($id);
+        $identitie->firstName = $request->input('firstName');
+        $identitie->lastName = $request->input('lastName');
+        $identitie->email = $request->input('email');
+        $identitie->phoneNumber = $request->input('phoneNumber');
+        $identitie->adresse = $request->input('adresse');
+        $identitie->twitter = $request->input('twitter');
+        $identitie->linkedin = $request->input('linkedin');
+        $identitie->facebook = $request->input('facebook');
+        $identitie->instagram = $request->input('instagram');
+        $identitie->skype = $request->input('skype');
+        $identitie->save();
+        return new IdentitieResource($identitie);
     }
 
     /**
@@ -76,5 +92,9 @@ class IdentitieController extends Controller
     public function destroy($id)
     {
         //
+        $identitie = Identitie::findOrFail($id);
+        if($identitie->delete()){
+            return new IdentitieResource($identitie);
+        }
     }
 }
