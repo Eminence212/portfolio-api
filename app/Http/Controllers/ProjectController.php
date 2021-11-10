@@ -15,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-         $projects = Project::with('domain')->get();
+         $projects = Project::with(['domain','technologies'])->get();
         return new ProjectResource($projects);
     }
 
@@ -33,7 +33,7 @@ class ProjectController extends Controller
         $project->picture = $request->input('picture');
         $project->domain_id = $request->input('domain_id');
         $project->save();
-        return new ProjectResource($project->load('domain'));
+        return new ProjectResource($project->load('domain','technologies'));
     }
 
     /**
@@ -45,7 +45,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return new ProjectResource($project->load('domain'));
+        return new ProjectResource($project->load('domain','technologies'));
     }
 
     /**
@@ -63,7 +63,7 @@ class ProjectController extends Controller
         $project->picture = $request->input('picture');
         $project->domain_id = $request->input('domain_id');
         $project->save();
-        return new ProjectResource($project->load('domain'));
+        return new ProjectResource($project->load('domain','technologies'));
     }
 
     /**
@@ -76,7 +76,7 @@ class ProjectController extends Controller
     {
       $project = Project::findOrFail($id);
         if($project->delete()){
-          return new ProjectResource($project->load('projects'));
+          return new ProjectResource($project->load('domain','technologies'));
         }  
     }
 }
