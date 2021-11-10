@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\IdentitieController;
 use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\SkillController;
 
@@ -55,3 +56,11 @@ Route::get('domain/{id}',[DomainController::class,'show']);
 Route::post('domain',[DomainController::class,'store']);
 Route::put('domain/{id}',[DomainController::class,'update']);
 Route::delete('domain/{id}',[DomainController::class,'destroy']);
+
+// ---------------------Projects----------------------------
+
+Route::get('projects',[ProjectController::class,'index']);
+Route::get('domain/{id}',[ProjectController::class,'show']);
+Route::post('domain',[ProjectController::class,'store']);
+Route::put('domain/{id}',[ProjectController::class,'update']);
+Route::delete('domain/{id}',[ProjectController::class,'destroy']);
