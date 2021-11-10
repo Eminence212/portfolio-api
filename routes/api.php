@@ -4,21 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\IdentitieController;
+use App\Http\Controllers\OpinionController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 // ---------------------Identities----------------------------
 Route::get('identities',[IdentitieController::class,'index']);
@@ -35,3 +22,9 @@ Route::put('service/{id}',[ServiceController::class,'update']);
 Route::delete('service/{id}',[ServiceController::class,'destroy']);
 
 // ---------------------Opignion----------------------------
+
+Route::get('opinions',[OpinionController::class,'index']);
+Route::get('opinion/{id}',[OpinionController::class,'show']);
+Route::post('opinion',[OpinionController::class,'store']);
+Route::put('opinion/{id}',[OpinionController::class,'update']);
+Route::delete('opinion/{id}',[OpinionController::class,'destroy']);
