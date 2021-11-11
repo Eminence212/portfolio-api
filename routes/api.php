@@ -65,6 +65,7 @@ Route::post('project',[ProjectController::class,'store']);
 Route::put('project/{id}',[ProjectController::class,'update']);
 Route::delete('project/{id}',[ProjectController::class,'destroy']);
 
+
 // ---------------------Technologies----------------------------
 
 Route::get('technologies',[TechnologieController::class,'index']);
