@@ -13,7 +13,7 @@ class CreateProjectTechnologiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_technologies', function (Blueprint $table) {
+        Schema::create('project_technologie', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->foreignId('technologie_id')->constrained()->onDelete('cascade');
@@ -28,6 +28,6 @@ class CreateProjectTechnologiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_technologies');
+        Schema::dropIfExists('project_technologie');
     }
 }
