@@ -15,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-         $projects = Project::with('domain')->get();
+         $projects = Project::with(['domain','technologies'])->get();
         return new ProjectResource($projects);
     }
 
@@ -27,13 +27,28 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+        try {
+     
         $project = new Project();
         $project->title = $request->input('title');
         $project->resume = $request->input('resume');
         $project->picture = $request->input('picture');
         $project->domain_id = $request->input('domain_id');
-        $project->save();
-        return new ProjectResource($project->load('domain'));
+        $is_saved = $project->save();
+        // Attacher les technologies 
+        if($is_saved){
+             $project = Project::all()->last()->load('domain','technologies');
+             $project->technologies()->sync($request->input('technologies'));
+             return  $project ;
+        }else{
+            return "Echec d'enregistrement";
+        }
+        } catch (\Throwable $th) {
+          return  $th;
+        }
+     
+        
     }
 
     /**
@@ -45,7 +60,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return new ProjectResource($project->load('domain'));
+        return new ProjectResource($project->load('domain','technologies'));
     }
 
     /**
@@ -57,13 +72,24 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+      
+        try {
         $project =Project::findOrFail($id);
         $project->title = $request->input('title');
         $project->resume = $request->input('resume');
         $project->picture = $request->input('picture');
         $project->domain_id = $request->input('domain_id');
-        $project->save();
-        return new ProjectResource($project->load('domain'));
+        $is_saved = $project->save();
+        // Attacher les technologies 
+        if($is_saved){
+             $project->technologies()->sync($request->input('technologies'));
+             return  $project->load('domain','technologies') ;
+        }else{
+            return "Echec lors de la mise à jour !";
+        }
+        } catch (\Throwable $th) {
+          return  $th;
+        }
     }
 
     /**
@@ -76,7 +102,8 @@ class ProjectController extends Controller
     {
       $project = Project::findOrFail($id);
         if($project->delete()){
-          return new ProjectResource($project->load('projects'));
+          return new ProjectResource($project->load('domain','technologies'));
         }  
     }
+
 }
