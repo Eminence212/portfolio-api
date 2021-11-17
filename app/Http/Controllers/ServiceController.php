@@ -32,7 +32,7 @@ class ServiceController extends Controller
         $service = new Service();
         $service->title = $request->input('title');
         $service->description = $request->input('description');
-        $service->description = $request->input('icon');
+        $service->icon = $request->input('icon');
         $service->save();
         return new ServiceResource($service);
     }
@@ -63,7 +63,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         $service->title = $request->input('title');
         $service->description = $request->input('description');
-        $service->description = $request->input('icon');
+        $service->icon = $request->input('icon');
         $service->save();
         return new ServiceResource($service);
     }
