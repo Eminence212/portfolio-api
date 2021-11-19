@@ -32,6 +32,7 @@ Route::get('opinion/{id}',[OpinionController::class,'show']);
 Route::post('opinion',[OpinionController::class,'store']);
 Route::put('opinion/{id}',[OpinionController::class,'update']);
 Route::delete('opinion/{id}',[OpinionController::class,'destroy']);
+Route::get('send-opinion',[OpinionController::class,'sendOpinion']);
 
 // ---------------------Skills Types----------------------------
 
