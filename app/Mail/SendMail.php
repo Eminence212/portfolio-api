@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
-public $details;
+    public $data = [];
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct(Array $mail)
     {
-    $this->details = $details;
+        $this->data = $mail;
     }
 
     /**
@@ -28,6 +29,7 @@ public $details;
      */
     public function build()
     {
-        return $this->from('mulemanowa@gmail.com')->subject('Test Mail from Surfside Media')->view('emails.sendMail');
+        
+        return $this->from($this->data['email'])->subject($this->data['object'])->view('emails.message');
     }
 }

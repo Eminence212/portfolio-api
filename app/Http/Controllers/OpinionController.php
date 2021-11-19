@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Opinion;
+use App\Mail\SendMail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\OpinionResource;
-
 class OpinionController extends Controller
 {
     /**
@@ -27,12 +28,25 @@ class OpinionController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+           
         $opinion = new Opinion();
         $opinion->name = $request->input('name');
         $opinion->email= $request->input('email');
         $opinion->message= $request->input('message');
-        $opinion->save();
+       $is_saved = $opinion->save();
+        if($is_saved){
+             $object =  $request->input('object') ?  $request->input('object') : "Mon opinion";
+            $mail=['name'=>$opinion->name,'email'=>$opinion->email,'object'=>$object,'message'=>$opinion->message];
+            Mail::to('mulemanowa@gmail.com')->send(new SendMail($mail));
         return new OpinionResource($opinion);
+        }else{
+            return "Echec lors de la mise à jour !";
+        }
+       
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     /**
@@ -76,5 +90,11 @@ class OpinionController extends Controller
         if($opinion->delete()){
             return new OpinionResource($opinion);
         }
+    }
+    public function sendOpinion(){
+        $user = ['name'=>'Kulesha jean','email'=>'kulesha@gmail.com','object'=>'Demande des services','message'=>'Bonjour Ir ! Je voulais savoir si vous serez disponible pour commencer un projet mobile ? Merci'];
+
+       Mail::to('mulemanowa@gmail.com')->send(new SendMail($user));
+        return "Email envoyé !";
     }
 }
